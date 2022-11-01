@@ -16,3 +16,12 @@ steps:
     archiveType: 'zip'
     archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'portfolio-app-service-connection'
+    appType: 'webApp'
+    appName: 'portfoliowebapp'
+    package: '$(System.DefaultWorkingDirectory)/*.zip'
+    deploymentMethod: 'auto'
